@@ -6,11 +6,6 @@ import { join } from 'path';
 async function bootstrap() {
   const env = process.env.NODE_ENV || 'development';
   console.log(`📌 当前环境：${env}`);
-  console.log('🔧 数据库配置：', {
-    type: process.env.DB_TYPE,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-  });
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.useStaticAssets(join(__dirname, 'images'), {
     prefix: '/xya',

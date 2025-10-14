@@ -9,26 +9,23 @@ import { UserModule } from './user/user.module';
 import { UploadModule } from './upload/upload.module';
 import { ArticalModule } from './artical/artical.module';
 import { ProductionModule } from './production/production.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import {ConfigService } from '@nestjs/config';
 import { DiscussionModule } from './discussion/discussion.module';
+import { MyconfigModule } from './myconfig/myconfig.module';
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true, // 让配置全局可用
-      envFilePath: [`.env.${process.env.NODE_ENV}`],
-    }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      imports: [MyconfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        type: config.get<'mysql' | 'postgres'>('DB_TYPE') as
+        type: config.get<'mysql' | 'postgres'>('type') as
           | 'mysql'
           | 'postgres',
-        username: config.get<string>('DB_USER'),
-        password: config.get<string>('DB_PASS'),
-        host: config.get<string>('DB_HOST'),
-        port: config.get<number>('DB_PORT'),
-        database: config.get<string>('DB_NAME'),
+        username: config.get<string>('username'),
+        password: config.get<string>('password'),
+        host: config.get<string>('host'),
+        port: config.get<number>('port'),
+        database: config.get<string>('database'),
         //entities: [__dirname + '/**/*.entity{.ts,.js}'], //实体文件（不建议）
         synchronize: true, //synchronize字段代表是否自动将实体类同步到数据库(生产环境不太建议,开发环境可以)
         retryDelay: 500, //重试连接数据库间隔
@@ -45,6 +42,7 @@ import { DiscussionModule } from './discussion/discussion.module';
     ArticalModule,
     ProductionModule,
     DiscussionModule,
+    MyconfigModule,
   ],
   controllers: [AppController],
   providers: [AppService],

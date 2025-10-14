@@ -53,4 +53,20 @@ export class ArticalService {
       code: 0,
     };
   }
+  async getTypelist(req){
+  const list= await this.artical.find({where:{user:{phoneNumber:req.user.phoneNumber}}, relations:['user']})
+  console.log(list)
+  const getKeyValue = (arr, key) => {
+  const counts = arr.reduce((acc, item) => {
+    const name = item[key];
+    if (name) {
+      acc[name] = (acc[name] || 0) + 1;
+    }
+    return acc;
+  }, {});
+
+  return Object.entries(counts).map(([name, value]) => ({ name, value }));
+};
+  return getKeyValue(list,'category')
+  }
 }

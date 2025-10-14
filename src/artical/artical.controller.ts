@@ -32,6 +32,11 @@ export class ArticalController {
   create(@Request() req, @Body() createArticalDto: CreateArticalDto) {
     return this.articalService.create(req.user, createArticalDto);
   }
+   @Get('/type')
+  getTypelist(@Request() req ){
+    console.log(req.user)
+    return this.articalService.getTypelist(req)
+  }
   @Get('/list')
   findAll(
     @Request() req,
@@ -44,14 +49,14 @@ export class ArticalController {
   findOne(@Param('id') id: string) {
     return this.articalService.findOne(+id);
   }
-  @Patch('update/:id')
+  @Patch('/update/:id')
   update(
     @Param('id', new ParseIntPipe()) id: number,
     @Body() updateArticalDto: UpdateArticalDto,
   ) {
     return this.articalService.update(id, updateArticalDto);
   }
-  @Delete('delete/:id')
+  @Delete('/delete/:id')
   remove(@Param('id') id: string) {
     return this.articalService.remove(+id);
   }

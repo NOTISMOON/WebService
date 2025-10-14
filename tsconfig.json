@@ -18,7 +18,7 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "rootDir": "src",
-     "types": ["node"]
+    "types": ["node"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "test", "**/*.spec.ts"]
