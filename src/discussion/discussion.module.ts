@@ -6,7 +6,7 @@ import { Discussion } from './entities/discussion.entity';
 import { User } from 'src/user/entities/user.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Discussion,User])],
+  imports: [TypeOrmModule.forFeature([Discussion, User])],
   controllers: [DiscussionController],
   providers: [DiscussionService],
 })

@@ -39,7 +39,7 @@ export class ProductionService {
     };
   }
   findOne(id: number) {
-    return `This action returns a #${id} artical`;
+    return  `This action returns a #${id} artical`;
   }
   async update(id: number, UpdateProductionDto: UpdateProductionDto) {
     await this.production.update(id, UpdateProductionDto);

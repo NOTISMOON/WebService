@@ -28,6 +28,21 @@ export class AuthController {
   }
   @Get('/verifyToken')
   async verifyToken(@Query('token') token: string) {
+    console.log(token)
+
     return await this.authService.verifyJWT(token);
+  }
+  @Post('/refresh')
+  async refresh(@Body('refreshToken') refreshToken: string) {
+    try {
+      const payload = await this.authService.verifyRefreshToken(refreshToken);
+      const tokens = await this.authService.generateTokens({
+        id: payload.id,
+        username: payload.username,
+      });
+      return { code: 200, ...tokens };
+    } catch {
+      return { code: 401, message: 'Refresh Token 失效，请重新登录' };
+    }
   }
 }

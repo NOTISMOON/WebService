@@ -6,11 +6,11 @@ export class Artical {
   id: number;
   @Column()
   title: string;
-  @Column({type:'text'})
+  @Column({ type: 'text' })
   content: string;
   @Column()
   category: string;
-@Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createTime: Date;
   @Column({ default: 1 })
   status: number;

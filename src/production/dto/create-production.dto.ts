@@ -21,11 +21,11 @@ export class CreateProductionDto {
   image: string;
   @IsOptional()
   status?: number;
-@IsNotEmpty({
+  @IsNotEmpty({
     message: (args: ValidationArguments): string => {
       return `${args.property}不能为空`;
     },
   })
   @Column()
-  link:string
+  link: string;
 }

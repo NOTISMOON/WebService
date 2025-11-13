@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param,} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { DiscussionService } from './discussion.service';
 import { CreateDiscussionDto } from './dto/create-discussion.dto';
 
@@ -7,12 +7,15 @@ export class DiscussionController {
   constructor(private readonly discussionService: DiscussionService) {}
 
   @Post('create/:id')
-  create(@Body() createDiscussionDto: CreateDiscussionDto,@Param('id') id:number) {
-    return this.discussionService.create(createDiscussionDto,+id);
+  create(
+    @Body() createDiscussionDto: CreateDiscussionDto,
+    @Param('id') id: number,
+  ) {
+    return this.discussionService.create(createDiscussionDto, +id);
   }
 
   @Get('getlist/:id')
-  findAll(@Param('id') id:number) {
+  findAll(@Param('id') id: number) {
     return this.discussionService.getall(+id);
   }
 }

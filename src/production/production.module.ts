@@ -4,9 +4,8 @@ import { ProductionController } from './production.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Production } from './entities/production.entity';
 import { User } from 'src/user/entities/user.entity';
-
 @Module({
-  imports: [TypeOrmModule.forFeature([Production, User])],
+  imports: [TypeOrmModule.forFeature([Production, User]) ],
   controllers: [ProductionController],
   providers: [ProductionService],
 })

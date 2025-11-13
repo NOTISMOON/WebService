@@ -9,14 +9,14 @@ import { extname, join } from 'path';
   imports: [
     MulterModule.register({
       storage: diskStorage({
-        destination: join(__dirname, '../images'),
+        destination: join(process.cwd(), 'images'),
         filename: (req, file, callback) => {
           const filename = `${new Date().getTime() + extname(file.originalname)}`;
           if (filename) return callback(null, filename);
         },
       }),
       limits: {
-        fileSize: 1024 * 1024 * 2,
+        fileSize: 1024 * 1024 * 10,
       },
       fileFilter(req, file, callback) {
         const allowedMimes = ['image/png', 'image/jpeg'];

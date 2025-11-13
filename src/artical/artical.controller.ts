@@ -17,7 +17,8 @@ import { ArticalService } from './artical.service';
 import { CreateArticalDto } from './dto/create-artical.dto';
 import { UpdateArticalDto } from './dto/update-artical.dto';
 import { AuthGuard } from '@nestjs/passport';
-@UseGuards(AuthGuard('jwt'))
+import { AuthJwtGuard } from 'src/auth-jwt/auth-jwt.guard';
+@UseGuards(AuthJwtGuard)
 @UsePipes(
   new ValidationPipe({
     whitelist: true,
@@ -32,10 +33,10 @@ export class ArticalController {
   create(@Request() req, @Body() createArticalDto: CreateArticalDto) {
     return this.articalService.create(req.user, createArticalDto);
   }
-   @Get('/type')
-  getTypelist(@Request() req ){
-    console.log(req.user)
-    return this.articalService.getTypelist(req)
+  @Get('/type')
+  getTypelist(@Request() req) {
+    console.log(req.user);
+    return this.articalService.getTypelist(req);
   }
   @Get('/list')
   findAll(

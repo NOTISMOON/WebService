@@ -1,3 +1,3 @@
 export class CreateDiscussionDto {
-    text:string;
+  text: string;
 }

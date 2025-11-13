@@ -29,6 +29,8 @@ export class User {
   articals: Artical[];
   @OneToMany(() => Production, (production) => production.user)
   productions: Production[];
-  @OneToMany(()=>Discussion,discussion=>discussion.user, {cascade:true})
-  discussions:Discussion[]
+  @OneToMany(() => Discussion, (discussion) => discussion.user, {
+    cascade: true,
+  })
+  discussions: Discussion[];
 }

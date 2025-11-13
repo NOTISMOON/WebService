@@ -12,7 +12,7 @@ import { Avatar } from '../avatar/entities/avatar.entity';
     JwtModule.register({
       secret: 'xya-0526',
       signOptions: {
-        expiresIn: '24h',
+        expiresIn: '1h',
       },
     }),
   ],

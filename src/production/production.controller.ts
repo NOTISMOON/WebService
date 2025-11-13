@@ -17,7 +17,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { ProductionService } from './production.service';
 import { CreateProductionDto } from './dto/create-production.dto';
 import { UpdateProductionDto } from './dto/update-production.dto';
-@UseGuards(AuthGuard('jwt'))
+import { AuthJwtGuard } from 'src/auth-jwt/auth-jwt.guard';
+@UseGuards(AuthJwtGuard)
 @UsePipes(
   new ValidationPipe({
     whitelist: true,

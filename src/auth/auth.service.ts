@@ -46,10 +46,14 @@ export class AuthService {
       return null;
     return user;
   }
-
-  async login(payload: { phoneNumber: string; passWord: string }) {
+  async generateTokens(payload: any) {
+    const accessToken = await this.jwtService.signAsync(payload, { expiresIn: '1h' });
+    const refreshToken =await this.jwtService.signAsync(payload, { expiresIn: '7d' });
+    return { accessToken,refreshToken };
+  }
+  async login(payload: { phoneNumber: string; passWord: string; id: number }) {
     // console.log(payload);
-    const token = await this.jwtService.signAsync(payload);
+    const token = await this.generateTokens(payload);
     const user = await this.user.findOne({
       where: { phoneNumber: payload.phoneNumber },
       relations: ['avatar'],
@@ -67,6 +71,24 @@ export class AuthService {
       return true;
     } catch (e) {
       throw new Error(e);
+    }
+  }
+  async verifyAccessToken(token: string) {
+    try {
+      return this.jwtService.verify(token);
+    } catch (err) {
+      if (err.name === 'TokenExpiredError') {
+        throw new Error('TOKEN_EXPIRED');
+      }
+      throw new Error('INVALID_TOKEN');
+    }
+  }
+
+  async verifyRefreshToken(token: string) {
+    try {
+      return this.jwtService.verify(token);
+    } catch (err) {
+      throw new Error('REFRESH_TOKEN_INVALID');
     }
   }
 }

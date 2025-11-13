@@ -49,14 +49,15 @@ export class UserService {
     await this.user.save(user);
     return { code: 0, message: '修改成功' };
   }
-    async getUserInof( id:number){
-          
-     const user= await this.user.findOne({where:{id},
-      relations:['avatar','articals','productions','discussions']
-      })
-      if(user)return {
-        code:0,
-        data:user
-      }
-    }
+  async getUserInof(id: number) {
+    const user = await this.user.findOne({
+      where: { id },
+      relations: ['avatar', 'articals', 'productions', 'discussions'],
+    });
+    if (user)
+      return {
+        code: 0,
+        data: user,
+      };
+  }
 }
