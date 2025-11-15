@@ -14,8 +14,12 @@ import Redis from 'ioredis';
         const redisConfig = configService.get('redis');
         return {
           type: 'single',
-          url: `redis://${redisConfig.host}:${redisConfig.port}`,
-          db: redisConfig.db || 0,
+         options: {
+            host: redisConfig.host,
+            port: redisConfig.port,
+            db: redisConfig.db,
+            password: redisConfig.password,
+          },
         };
       },
     }),
