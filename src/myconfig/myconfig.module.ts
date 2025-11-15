@@ -11,12 +11,14 @@ import * as yaml from 'js-yaml';
       load: [
         () => {
           const env = process.env.NODE_ENV || 'development';
-          const configFile = fs.readFileSync(
-            join(process.cwd(), 'src', 'myconfig', 'config.yaml'),
-            'utf8',
-          );
+          const configPath = join(process.cwd(), 'src', 'myconfig', 'config.yaml');
+          if (!fs.existsSync(configPath)) {
+            console.error(`Config file not found at: ${configPath}`);
+            return {};
+          }
+          const configFile = fs.readFileSync(configPath, 'utf8');
           const config = yaml.load(configFile) as Record<string, any>;
-          return config.app[env]; // ✅ 直接返回当前环境的配置
+          return config?.app?.[env] || {};
         },
       ],
     }),
