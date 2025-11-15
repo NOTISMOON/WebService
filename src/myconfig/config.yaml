@@ -1,11 +1,11 @@
 app:
   development:
     mysql:
-      host: db.gbmigijigqsnqzefifxi.supabase.co
-      port: 5432
+      host: aws-1-ap-northeast-1.pooler.supabase.com
+      port: 6543
       database: postgres
       password: xya0526.
-      username: postgres
+      username: postgres.gbmigijigqsnqzefifxi
       type: postgres
     redis: 
       host: 'r-bp1xxxhoqghu5ly8japd.redis.rds.aliyuncs.com'
@@ -15,11 +15,11 @@ app:
       
   production:
     mysql:
-      host: db.gbmigijigqsnqzefifxi.supabase.co
-      port: 5432
+      host: aws-1-ap-northeast-1.pooler.supabase.com
+      port: 6543
       database: postgres
       password: xya0526.
-      username: postgres
+      username: postgres.gbmigijigqsnqzefifxi
       type: postgres
     redis:
       host: 'r-bp1xxxhoqghu5ly8japd.redis.rds.aliyuncs.com'
