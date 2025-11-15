@@ -1,0 +1,28 @@
+app:
+  development:
+    mysql:
+      host: db.gbmigijigqsnqzefifxi.supabase.co
+      port: 5432
+      database: postgres
+      password: xya0526.
+      username: postgres
+      type: postgres
+    redis: 
+      host: 'r-bp1xxxhoqghu5ly8japd.redis.rds.aliyuncs.com'
+      port: 6379  # 新增：拆分后的用户名
+      password: "r-bp1xxxhoqghu5ly8ja:Xya0526+"   
+      db: 0
+      
+  production:
+    mysql:
+      host: db.gbmigijigqsnqzefifxi.supabase.co
+      port: 5432
+      database: postgres
+      password: xya0526.
+      username: postgres
+      type: postgres
+    redis:
+      host: 'r-bp1xxxhoqghu5ly8japd.redis.rds.aliyuncs.com'
+      port: 6379  # 新增：拆分后的用户名
+      password: "r-bp1xxxhoqghu5ly8ja:Xya0526+"  
+      db: 0
